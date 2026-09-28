@@ -39,7 +39,7 @@ export function gerarInsights(colaboradores: ColaboradorMetricas[], kpi: KpiEqui
       insights.push({
         id: nextId('insight'),
         titulo: 'Concentração de resultado em poucos colaboradores',
-        descricao: `${ordenadosPorProtocolo[0].nome} e ${ordenadosPorProtocolo[1].nome} concentram ${participacao.toFixed(0)}% de todos os protocolos da equipe — risco de dependência operacional.`,
+        descricao: `${ordenadosPorProtocolo[0].nome} e ${ordenadosPorProtocolo[1].nome} concentram ${participacao.toFixed(0)}% de todos os protocolos da equipe, risco de dependência operacional.`,
         categoria: 'risco',
         severidade: participacao >= 60 ? 'alerta' : 'atencao',
       });
@@ -86,7 +86,7 @@ export function gerarInsights(colaboradores: ColaboradorMetricas[], kpi: KpiEqui
     insights.push({
       id: nextId('insight'),
       titulo: 'Destaque de performance',
-      descricao: `${kpi.melhorColaborador.nome} lidera a eficiência da equipe com ${kpi.melhorColaborador.eficiencia.toFixed(0)} pontos e taxa de protocolados de ${kpi.melhorColaborador.conversaoAssinadosProtocolados.toFixed(0)}% — um modelo a ser replicado.`,
+      descricao: `${kpi.melhorColaborador.nome} lidera a eficiência da equipe com ${kpi.melhorColaborador.eficiencia.toFixed(0)} pontos e taxa de protocolados de ${kpi.melhorColaborador.conversaoAssinadosProtocolados.toFixed(0)}%, um modelo a ser replicado.`,
       categoria: 'destaque',
       severidade: 'excelente',
     });

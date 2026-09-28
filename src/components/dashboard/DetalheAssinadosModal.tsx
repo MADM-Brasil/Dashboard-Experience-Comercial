@@ -101,7 +101,7 @@ export function DetalheAssinadosModal({ titulo, colaboradores, atual, meta, onFe
           <div className="mb-4">
             <h2 className="text-lg font-bold text-slate-900">{titulo}</h2>
             <p className="text-sm text-slate-500">
-              {formatNumero(atual)} assinado(s) — {contribuiram.length} colaborador(es) contribuíram
+              {formatNumero(atual)} assinado(s), {contribuiram.length} colaborador(es) contribuíram
             </p>
           </div>
 
@@ -188,7 +188,7 @@ export function DetalheAssinadosModal({ titulo, colaboradores, atual, meta, onFe
               </div>
 
               <div className="mb-4">
-                <p className="text-[12px] font-medium text-slate-500 mb-2">Taxa de assinados — top contribuintes</p>
+                <p className="text-[12px] font-medium text-slate-500 mb-2">Taxa de assinados: top contribuintes</p>
                 <ResponsiveContainer width="100%" height={140}>
                   <LineChart data={conversaoTopContribuintes} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
                     <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" vertical={false} />

@@ -122,7 +122,7 @@ export default function VisaoGeral() {
 
   return (
     <div>
-      <PageHeader description={`Panorama executivo da operação comercial — Assinados de ${periodoSelecionado.label.toLowerCase()}.`} />
+      <PageHeader description={`Panorama executivo da operação comercial. Assinados de ${periodoSelecionado.label.toLowerCase()}.`} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         <ResumoMesCard
@@ -164,11 +164,11 @@ export default function VisaoGeral() {
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
-        <KpiCard titulo="Venda Ganha" valor={formatNumero(vendaGanhaTotal)} icon={Award} accent="brand" />
-        <KpiCard titulo="Recebidos" valor={formatNumero(kpi.totalRecebidos)} icon={Inbox} accent="info" />
-        <KpiCard titulo="Protocolados" valor={formatNumero(kpi.totalProtocolados)} icon={FileCheck2} accent="success" />
-        <KpiCard titulo="Conversão Geral" valor={formatPct(conversaoGeralPeriodo)} icon={Percent} accent="brand" />
-        <KpiCard titulo="Conversão Judit" valor={formatPct(conversaoJuditPeriodo, 2)} icon={Percent} accent="warning" />
+        <KpiCard titulo="Venda Ganha" valor={formatNumero(vendaGanhaTotal)} icon={Award} accent="brand" animarHover />
+        <KpiCard titulo="Recebidos" valor={formatNumero(kpi.totalRecebidos)} icon={Inbox} accent="info" animarHover />
+        <KpiCard titulo="Protocolados" valor={formatNumero(kpi.totalProtocolados)} icon={FileCheck2} accent="success" animarHover />
+        <KpiCard titulo="Conversão Geral" valor={formatPct(conversaoGeralPeriodo)} icon={Percent} accent="brand" animarHover />
+        <KpiCard titulo="Conversão Judit" valor={formatPct(conversaoJuditPeriodo, 2)} icon={Percent} accent="warning" animarHover />
       </div>
 
       <Card
@@ -187,8 +187,8 @@ export default function VisaoGeral() {
           </p>
           <p className="mt-1 text-[13px] text-slate-600">
             {metaComprometida
-              ? `No total do mês, contando até hoje, isso representa só ${formatPct(atingimentoMetaMes, 1)} da meta mensal de assinados — abaixo do esperado.`
-              : `No total do mês, contando até hoje, isso representa ${formatPct(atingimentoMetaMes, 1)} da meta mensal de assinados — dentro do esperado.`}
+              ? `No total do mês, contando até hoje, isso representa só ${formatPct(atingimentoMetaMes, 1)} da meta mensal de assinados, abaixo do esperado.`
+              : `No total do mês, contando até hoje, isso representa ${formatPct(atingimentoMetaMes, 1)} da meta mensal de assinados, dentro do esperado.`}
           </p>
         </div>
       </Card>

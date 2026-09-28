@@ -62,7 +62,7 @@ export default function Gargalos() {
 
   return (
     <div>
-      <PageHeader title="Gargalos" description="Onde a empresa está perdendo processos — e o que fazer a respeito." />
+      <PageHeader title="Gargalos" description="Onde a empresa está perdendo processos e o que fazer a respeito." />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <KpiCard titulo="Gargalos identificados" valor={formatNumero(gargalos.length)} icon={AlertTriangle} accent={gargalos.length ? 'warning' : 'success'} />

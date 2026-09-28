@@ -37,7 +37,7 @@ export function QuadradosRitmo({ label, valorMes, meta, metaLabel, valorHoje, nu
   const totalQuadrados = numQuadrados || QUADRADOS_PADRAO;
 
   return (
-    <div title={temRitmoHoje ? `Ritmo de hoje: quanto já foi feito hoje frente à meta diária (${metaLabel.toLowerCase()} ÷ dias úteis do mês).` : 'Sem dado de "hoje" para o período filtrado — tratado como zerado.'}>
+    <div title={temRitmoHoje ? `Ritmo de hoje: quanto já foi feito hoje frente à meta diária (${metaLabel.toLowerCase()} ÷ dias úteis do mês).` : 'Sem dado de "hoje" para o período filtrado, tratado como zerado.'}>
       <div className="flex items-center justify-between text-[11px] mb-1">
         <span className="text-slate-500">{label}</span>
         <span className="font-semibold text-slate-700">

@@ -70,7 +70,7 @@ export function ResumoMesCard({ titulo, icon: Icon, atual, meta, pace, limiarCor
       ) : (
         <p className="flex items-center gap-1.5 mt-3 pt-3 border-t border-slate-100 text-[12px] text-emerald-700">
           <CheckCircle2 size={13} className="shrink-0 text-emerald-500" />
-          Pace bom — ritmo dentro do esperado pra esse mês.
+          Pace bom, ritmo dentro do esperado pra esse mês.
         </p>
       )}
     </Card>

@@ -37,7 +37,7 @@ export function AlertCard({ alerta }: { alerta: AlertaInteligente }) {
           </span>
           <span className="min-w-0 truncate text-sm font-semibold text-slate-900">{alerta.colaboradorNome}</span>
         </div>
-        <p className="mt-0.5 text-[12.5px] text-slate-600 truncate">{TITULO_TIPO[alerta.tipo]} — {valorExibido}</p>
+        <p className="mt-0.5 text-[12.5px] text-slate-600 truncate">{TITULO_TIPO[alerta.tipo]}: {valorExibido}</p>
       </div>
     </Link>
   );

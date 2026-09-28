@@ -12,6 +12,8 @@ interface KpiCardProps {
   variacaoInvertida?: boolean; // quando queda é positiva (ex: nenhum caso hoje)
   subtitulo?: string;
   accent?: 'brand' | 'success' | 'warning' | 'danger' | 'info';
+  /** Sobe e acende a borda ao passar o mouse, igual aos cards Geral/Judit · Assinados. */
+  animarHover?: boolean;
 }
 
 const ACCENTS: Record<NonNullable<KpiCardProps['accent']>, string> = {
@@ -22,11 +24,11 @@ const ACCENTS: Record<NonNullable<KpiCardProps['accent']>, string> = {
   info: 'text-sky-400 bg-sky-500/10',
 };
 
-export function KpiCard({ titulo, valor, icon: Icon, variacao, variacaoInvertida, subtitulo, accent = 'brand' }: KpiCardProps) {
+export function KpiCard({ titulo, valor, icon: Icon, variacao, variacaoInvertida, subtitulo, accent = 'brand', animarHover }: KpiCardProps) {
   const positivo = variacao !== undefined ? (variacaoInvertida ? variacao < 0 : variacao > 0) : null;
 
   return (
-    <Card className="flex flex-col gap-3">
+    <Card className={clsx('flex flex-col gap-3', animarHover && 'transition-all hover:border-blue-400/60 hover:shadow-md hover:-translate-y-0.5')}>
       {typeof Icon === 'string' ? (
         <div className="flex items-center justify-between gap-2">
           <p className="text-[13px] text-slate-500 leading-snug">{titulo}</p>

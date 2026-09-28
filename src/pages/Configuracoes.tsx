@@ -152,7 +152,7 @@ export default function Configuracoes() {
                   </div>
                   {status.ultimoErro && (
                     <p className="text-[11px] text-amber-600 dark:text-amber-400 mt-1.5">
-                      A última tentativa de atualizar falhou ({status.ultimoErro}) — os dados acima são do último cache válido.
+                      A última tentativa de atualizar falhou ({status.ultimoErro}). Os dados acima são do último cache válido.
                     </p>
                   )}
                 </>

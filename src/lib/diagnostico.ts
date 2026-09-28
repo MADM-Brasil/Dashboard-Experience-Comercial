@@ -61,7 +61,7 @@ function mediana(valores: number[]): number {
 
 function acaoPorFaixa(faixa: FaixaVolume, nivelConversao: NivelConversaoRelativo | null): string {
   if (faixa === 'baixo') return 'Checar histórico dos últimos meses (tendência, não conversão pontual)';
-  if (faixa === 'medio_baixo') return 'Entender cenário individual — não decidir só pelo número';
+  if (faixa === 'medio_baixo') return 'Entender cenário individual, não decidir só pelo número';
   if (faixa === 'medio_alto') return nivelConversao === 'baixa' ? 'Melhorar conversão assinado → protocolado' : 'Entregar mais leads';
   return nivelConversao === 'baixa' ? 'Ajustar conversão (perde ritmo do assinado ao protocolo)' : 'Manter e escalar ainda mais leads';
 }

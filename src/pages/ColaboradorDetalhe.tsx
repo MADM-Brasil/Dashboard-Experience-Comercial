@@ -106,26 +106,26 @@ export default function ColaboradorDetalhe() {
 
   const recomendacoes = [
     statusPace === 'critico' &&
-      `Pace muito abaixo do esperado (gap de ${formatNumero(pace!.gap)} vs. meta) — no ritmo atual não fecha o mês, agir agora.`,
-    statusPace === 'alerta' && `Pace abaixo do esperado (gap de ${formatNumero(pace!.gap)} vs. meta) — acompanhar de perto.`,
+      `Pace muito abaixo do esperado (gap de ${formatNumero(pace!.gap)} vs. meta). No ritmo atual não fecha o mês, agir agora.`,
+    statusPace === 'alerta' && `Pace abaixo do esperado (gap de ${formatNumero(pace!.gap)} vs. meta). Acompanhar de perto.`,
     colaborador.conversaoAssinadosProtocolados < 60 &&
-      `Conversão de Assinados → Protocolados em ${formatPct(colaborador.conversaoAssinadosProtocolados, 1)} (${formatNumero(colaborador.protocolados)} de ${formatNumero(colaborador.assinados)} assinados) — revisar imediatamente a carteira de assinados sem protocolo.`,
+      `Conversão de Assinados → Protocolados em ${formatPct(colaborador.conversaoAssinadosProtocolados, 1)} (${formatNumero(colaborador.protocolados)} de ${formatNumero(colaborador.assinados)} assinados). Revisar imediatamente a carteira de assinados sem protocolo.`,
     // Só compara com a meta se ela existir de verdade (metaMensal = 0 significa "sem meta
     // cadastrada", não "bateu 0% da meta") — senão essa recomendação dispararia pra todo mundo.
     colaborador.metaMensal > 0 &&
       colaborador.atingimentoMetaMensal < 70 &&
-      `Bateu só ${formatPct(colaborador.atingimentoMetaMensal, 0)} da meta mensal (${formatNumero(colaborador.assinados)} de ${formatNumero(colaborador.metaMensal)}) — redefinir plano de recuperação com acompanhamento semanal.`,
+      `Bateu só ${formatPct(colaborador.atingimentoMetaMensal, 0)} da meta mensal (${formatNumero(colaborador.assinados)} de ${formatNumero(colaborador.metaMensal)}). Redefinir plano de recuperação com acompanhamento semanal.`,
     colaborador.tendencia === 'caindo' &&
-      `Tendência de queda (${colaborador.produtividade.toFixed(1)} assinados/dia no período) — agendar 1:1 de acompanhamento para entender a causa.`,
+      `Tendência de queda (${colaborador.produtividade.toFixed(1)} assinados/dia no período). Agendar 1:1 de acompanhamento para entender a causa.`,
     colaborador.conversaoRecebidosAssinados < 70 &&
-      `Conversão de Recebidos → Assinados em ${formatPct(colaborador.conversaoRecebidosAssinados, 1)} (${formatNumero(colaborador.assinados)} de ${formatNumero(colaborador.recebidos)} recebidos) — reforçar técnicas de fechamento comercial.`,
+      `Conversão de Recebidos → Assinados em ${formatPct(colaborador.conversaoRecebidosAssinados, 1)} (${formatNumero(colaborador.assinados)} de ${formatNumero(colaborador.recebidos)} recebidos). Reforçar técnicas de fechamento comercial.`,
   ].filter(Boolean) as string[];
 
   const recomendacaoEngajamento =
     recomendacoes.length === 0 && (colaborador.status === 'excelente' || colaborador.status === 'bom')
       ? colaborador.status === 'excelente'
-        ? `${colaborador.nome.split(' ')[0]} está com resultado excelente — reconhecer publicamente e envolvê-lo(a) em mentoria de colegas pode manter o engajamento em alta e ajudar a elevar o padrão do time.`
-        : `Resultado consistente e dentro do esperado — oferecer uma meta desafio ou reconhecimento pontual pode ser o empurrão para levar ${colaborador.nome.split(' ')[0]} ao próximo nível.`
+        ? `${colaborador.nome.split(' ')[0]} está com resultado excelente. Reconhecer publicamente e envolvê-lo(a) em mentoria de colegas pode manter o engajamento em alta e ajudar a elevar o padrão do time.`
+        : `Resultado consistente e dentro do esperado. Oferecer uma meta desafio ou reconhecimento pontual pode ser o empurrão para levar ${colaborador.nome.split(' ')[0]} ao próximo nível.`
       : null;
 
   return (
@@ -164,13 +164,13 @@ export default function ColaboradorDetalhe() {
           valor={formatPct(colaborador.metaMensal > 0 ? colaborador.atingimentoMetaMensal : colaborador.conversaoGeral, 0)}
           icon={Target}
           accent={colaborador.metaMensal === 0 ? 'info' : colaborador.atingimentoMetaMensal >= 90 ? 'success' : 'warning'}
-          subtitulo={colaborador.metaMensal === 0 ? 'Meta não cadastrada — usando Conv. Geral' : undefined}
+          subtitulo={colaborador.metaMensal === 0 ? 'Meta não cadastrada, usando Conv. Geral' : undefined}
         />
       </div>
 
       {colaborador.metaMensal === 0 && (
         <Card className="mb-6 text-sm text-slate-500">
-          Meta do mês não cadastrada para este colaborador no banco — pace indisponível.
+          Meta do mês não cadastrada para este colaborador no banco, pace indisponível.
         </Card>
       )}
 
@@ -204,7 +204,7 @@ export default function ColaboradorDetalhe() {
           ) : (
             <p className="flex items-center gap-1.5 mt-3 pt-3 border-t border-slate-100 text-[12px] text-emerald-700">
               <CheckCircle2 size={13} className="shrink-0 text-emerald-500" />
-              Pace bom — ritmo dentro do esperado pra esse mês.
+              Pace bom, ritmo dentro do esperado pra esse mês.
             </p>
           )}
 
@@ -212,7 +212,7 @@ export default function ColaboradorDetalhe() {
             Pace mede <span className="font-medium text-slate-600">volume</span> de assinados vs. meta do mês; o status "
             {STATUS_LABEL[colaborador.status]}" no topo mede <span className="font-medium text-slate-600">qualidade</span> (Protocolados +
             Venda Ganha, os dois contam como caso fechado, sobre Assinados). Quando o pace está em alerta ou crítico, isso já entra
-            como recomendação abaixo — os dois se complementam, não competem.
+            como recomendação abaixo: os dois se complementam, não competem.
           </p>
         </Card>
       )}
@@ -297,13 +297,13 @@ export default function ColaboradorDetalhe() {
                 <div>
                   <p className="text-sm font-semibold text-slate-900">
                     {colaborador.status === 'excelente' || colaborador.status === 'bom'
-                      ? `Nenhum alerta disparado — nível ${STATUS_LABEL[colaborador.status].toLowerCase()}`
+                      ? `Nenhum alerta disparado, nível ${STATUS_LABEL[colaborador.status].toLowerCase()}`
                       : `Nenhum alerta crítico disparado, mas o status geral está em ${STATUS_LABEL[colaborador.status].toLowerCase()}`}
                   </p>
                   <p className="mt-1 text-[13px] text-slate-500">
                     {colaborador.status === 'excelente' || colaborador.status === 'bom'
                       ? 'Taxa de Protocolados, atingimento de meta e produtividade estão dentro do esperado no período. Não há risco identificado no momento.'
-                      : 'Nenhuma métrica cruzou os limiares automáticos de alerta (Taxa de Protocolados, meta ou queda de produtividade) — mas o status geral já sinaliza que o resultado está abaixo do ideal.'}
+                      : 'Nenhuma métrica cruzou os limiares automáticos de alerta (Taxa de Protocolados, meta ou queda de produtividade), mas o status geral já sinaliza que o resultado está abaixo do ideal.'}
                   </p>
                   <p className="mt-2 text-[13px] text-slate-600">
                     <span className="font-medium">Sugestão:</span>{' '}

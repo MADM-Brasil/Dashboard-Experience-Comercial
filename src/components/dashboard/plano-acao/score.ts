@@ -137,22 +137,22 @@ function diagnosticoCombinado(c: ColaboradorReal, media: MediaEquipe): string | 
 
   // Recebeu pouco, mas mesmo assim assina bem — o problema está em protocolar, não em vender.
   if (nivelRecebidos === 'baixo' && nivelAssinados !== 'baixo' && nivelProtocolados === 'baixo') {
-    return `Poucos leads (${formatNumero(c.recebidos)}, méd. ${media.recebidos.toFixed(1)}) mas assina bem (${formatNumero(c.assinados)}). Gargalo: só ${formatNumero(c.protocolados)} protocolado(s) — priorizar isso.`;
+    return `Poucos leads (${formatNumero(c.recebidos)}, méd. ${media.recebidos.toFixed(1)}) mas assina bem (${formatNumero(c.assinados)}). Gargalo: só ${formatNumero(c.protocolados)} protocolado(s). Priorizar isso.`;
   }
 
   // Recebeu muito lead, mas converte pouco em assinatura — e o pouco que assina, protocola bem.
   if (nivelRecebidos === 'alto' && nivelAssinados === 'baixo' && nivelProtocolados !== 'baixo') {
-    return `Lead alto (${formatNumero(c.recebidos)}, méd. ${media.recebidos.toFixed(1)}) mas converte pouco (${formatNumero(c.assinados)} assinados). Protocola bem (${formatNumero(c.protocolados)}) — revisar abordagem, não a carga de leads.`;
+    return `Lead alto (${formatNumero(c.recebidos)}, méd. ${media.recebidos.toFixed(1)}) mas converte pouco (${formatNumero(c.assinados)} assinados). Protocola bem (${formatNumero(c.protocolados)}). Revisar abordagem, não a carga de leads.`;
   }
 
   // Assina bem (ou acima da meta), mas protocola muito abaixo da equipe — funil represado.
   if (nivelAssinados !== 'baixo' && nivelProtocolados === 'baixo') {
-    return `Assinou bem (${formatNumero(c.assinados)}) mas protocolou só ${formatNumero(c.protocolados)} (méd. ${media.protocolados.toFixed(1)}) — funil represado no protocolo. Reservar tempo essa semana pra colocar em dia.`;
+    return `Assinou bem (${formatNumero(c.assinados)}) mas protocolou só ${formatNumero(c.protocolados)} (méd. ${media.protocolados.toFixed(1)}). Funil represado no protocolo. Reservar tempo essa semana pra colocar em dia.`;
   }
 
   // Assina pouco, mas o pouco que assina vira protocolo acima da média — execução ótima, falta volume.
   if (nivelAssinados === 'baixo' && nivelProtocolados === 'alto') {
-    return `Assina pouco (${formatNumero(c.assinados)}) mas protocola quase tudo (${formatNumero(c.protocolados)}, acima da méd. ${media.protocolados.toFixed(1)}) — falta volume, não execução. Avaliar lead na carteira.`;
+    return `Assina pouco (${formatNumero(c.assinados)}) mas protocola quase tudo (${formatNumero(c.protocolados)}, acima da méd. ${media.protocolados.toFixed(1)}). Falta volume, não execução. Avaliar lead na carteira.`;
   }
 
   // Recebeu pouco lead E assina pouco — problema pode não ser do colaborador, é distribuição.
@@ -181,21 +181,21 @@ function escolherPor(id: string, opcoes: string[]): string {
  */
 function complementoZerouBandaBoa(c: ColaboradorReal, media: MediaEquipe): string {
   if (c.protocolados === 0) {
-    return ' Também zerou protocolados — conferir os dois juntos.';
+    return ' Também zerou protocolados, conferir os dois juntos.';
   }
   if (c.conversaoRecebidosAssinados < 5 && c.recebidos >= 5) {
-    return ` Conversão também baixa (${formatPct(c.conversaoRecebidosAssinados, 1)}) — pode não ser só pontual.`;
+    return ` Conversão também baixa (${formatPct(c.conversaoRecebidosAssinados, 1)}), pode não ser só pontual.`;
   }
   if (c.conversaoRecebidosAssinados > 20) {
-    return ` Conversão segue alta (${formatPct(c.conversaoRecebidosAssinados, 1)}) — reforça que é pontual.`;
+    return ` Conversão segue alta (${formatPct(c.conversaoRecebidosAssinados, 1)}), reforça que é pontual.`;
   }
   if (media.recebidos > 0 && c.recebidos < media.recebidos * 0.5) {
-    return ` Também recebeu poucos leads (${formatNumero(c.recebidos)}) — pode explicar.`;
+    return ` Também recebeu poucos leads (${formatNumero(c.recebidos)}), pode explicar.`;
   }
   return escolherPor(c.id, [
     ' Confirmar se é pontual (férias, mudança de carteira).',
-    ' Nada mais fora do lugar — provável ser pontual.',
-    ' Resto normal — mais provável ser algo pontual.',
+    ' Nada mais fora do lugar, provável ser pontual.',
+    ' Resto normal, mais provável ser algo pontual.',
   ]);
 }
 
@@ -264,7 +264,7 @@ export function gerarRecomendacoesIA(
     } else if (quedaPct >= 50) {
       mensagem = `Caiu ${quedaPct}% nos assinados (${antes} → ${depois}, 1ª → 2ª metade). Prioridade, não só acompanhamento.`;
     } else {
-      mensagem = `Ritmo caiu ${quedaPct}% no mês (${antes} → ${depois} assinados). Ajuste simples pode reverter — vale conversa rápida.`;
+      mensagem = `Ritmo caiu ${quedaPct}% no mês (${antes} → ${depois} assinados). Ajuste simples pode reverter. Vale conversa rápida.`;
     }
     recomendacoes.push(mensagem);
   }
@@ -277,12 +277,12 @@ export function gerarRecomendacoesIA(
 
   if (banda === 'excelente') {
     recomendacoes.push(
-      `${formatPct(c.conversaoRecebidosAssinados, 1)} de conversão, ${formatNumero(c.assinados)} assinados — destaque. Reconhecer e usar de exemplo com a equipe.`,
+      `${formatPct(c.conversaoRecebidosAssinados, 1)} de conversão, ${formatNumero(c.assinados)} assinados, destaque. Reconhecer e usar de exemplo com a equipe.`,
     );
   }
 
   if (recomendacoes.length === 0) {
-    recomendacoes.push('Sem pontos críticos — manter o acompanhamento de rotina.');
+    recomendacoes.push('Sem pontos críticos, manter o acompanhamento de rotina.');
   }
   return recomendacoes;
 }
